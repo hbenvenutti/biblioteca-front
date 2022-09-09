@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  max-width: 27rem;
+  /* max-width: 27rem; */
   background: var(--gray-800);
   border-radius: 8px;
   padding: 2.5rem;
@@ -23,7 +23,6 @@ export const Container = styled.div`
     margin-top: 0.5rem;
     display: block;
     color: var(--pink-400)
-
   }
 
   .bookInfo span + span {

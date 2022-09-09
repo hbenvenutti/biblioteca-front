@@ -7,11 +7,26 @@ export const Content = styled.div`
   padding: 0 1rem;
 
   display: grid;
-  grid-template-columns: 256px 1fr;
+  grid-template-columns: 256px 1fr 0.5fr;
   gap: 2rem;
   
   align-items: flex-start;
 
+  /* .bookList {
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  } */
+
+  main {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Book + Book */
   ${Container} + ${Container} {
     margin-top: 1rem;
   }
