@@ -1,9 +1,10 @@
 import React from 'react';
 
 import avatarPlaceholder from '../../assets/avatar.jpg';
+import { Container } from './Avatar.styles';
 
 export const Avatar = () => (
-  <img 
+  <Container
     className="avatar"
     src={avatarPlaceholder} 
     alt="avatar" 

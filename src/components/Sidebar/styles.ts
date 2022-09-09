@@ -32,13 +32,7 @@ export const Container = styled.aside`
 
   }
 
-  .avatar {
-    width: calc(3rem + 12px); 
-    height: calc(3rem + 12px);
-    border-radius: 8px;
-    border: 4px solid var(--gray-800);
-    outline: 2px solid var(--pink-800);
-  }
+
 
   footer {
     border-top: 1px solid var(--gray-600);

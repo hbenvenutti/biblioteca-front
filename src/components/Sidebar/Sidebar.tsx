@@ -5,8 +5,16 @@ import { Container } from './styles';
 import { Avatar } from '../Avatar/Avatar';
 import cover from '../../assets/cover.jpg'
 
-export const Sidebar = () => (
-  <Container>
+interface SidebarProps {
+  logged: boolean;
+  name: string;
+  lastName: string
+  email: string;
+}
+export const Sidebar = (props: SidebarProps) => {
+  if (!props.logged) {
+    return (
+      <Container>
       <img 
         className="cover"
         src={cover} 
@@ -16,8 +24,27 @@ export const Sidebar = () => (
       <div className="profile">
         <Avatar />
 
-        <strong>Huam Benvenutti</strong>
-        <span>huambenvenutti@gmail.com</span>
+        <strong>Usuário não autenticado</strong>
+      </div>
+    
+      <footer />
+    </Container>
+    )
+  }
+
+  return (
+    <Container>
+      <img 
+        className="cover"
+        src={cover} 
+        alt="" 
+      />
+    
+      <div className="profile">
+        <Avatar />
+
+        <strong>{`${props.name} ${props.lastName}`}</strong>
+        <span>{props.email}</span>
       </div>
     
       <footer>
@@ -26,5 +53,6 @@ export const Sidebar = () => (
           Editar seu perfil
         </a>
       </footer>
-  </Container>
-)
+    </Container>
+  )
+}

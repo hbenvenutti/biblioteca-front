@@ -9,5 +9,9 @@ export const Content = styled.div`
   grid-template-columns: 256px 1fr;
   gap: 2rem;
   
-  align-items: flex-start; 
+  align-items: flex-start;
+
+  .bookList div + div {
+    margin-top: 1rem;
+  }
 `
