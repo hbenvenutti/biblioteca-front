@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Container} from '../components/Book/styles'
 
 export const Content = styled.div`
   max-width: 70rem;
@@ -11,7 +12,7 @@ export const Content = styled.div`
   
   align-items: flex-start;
 
-  .bookList div + div {
+  ${Container} + ${Container} {
     margin-top: 1rem;
   }
 `

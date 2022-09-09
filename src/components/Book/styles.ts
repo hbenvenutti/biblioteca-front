@@ -8,20 +8,44 @@ export const Container = styled.div`
 
   .header {
     display: flex;
-    /* grid-template-columns: 10rem 1fr; */
     justify-content: space-between;
-    /* gap: 2rem; */
   
   align-items: flex-start; 
   }
 
   .bookInfo strong {
     display: block;
+    line-height: 1.6;
+    color: var(--pink-700);
   }
 
   .bookInfo span {
     margin-top: 0.5rem;
     display: block;
+    color: var(--pink-400)
+
+  }
+
+  .bookInfo span + span {
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .edition {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edition span {
+    margin: auto;
+    margin-top: 0.5rem;
+    color: var(--pink-300)
+  }
+
+  .edition p {
+    margin: 0.5rem auto;
+    color: var(--pink-300);
   }
 
   img {

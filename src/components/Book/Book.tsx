@@ -6,13 +6,15 @@ export const Book = () => (
     <div className="header">
 
       <div className="bookInfo">
-        <strong>O senhor dos anéis</strong>
+        <strong>O senhor dos anéis: O retorno do rei</strong>
         <span>J.R.R. Tolkien</span>
-        <span>Harper Collins</span>
-        <span>1ª Edição</span>
       </div>
 
-      <img src={bookCover} alt="book cover" />
+      <div className='edition'>
+        <img src={bookCover} alt="book cover" />
+        <span>Harper Collins</span>
+        <p>1ª Edição</p>
+      </div>
     </div>
     <footer>
       <article>
