@@ -23,4 +23,11 @@ export const Content = styled.div`
   ${Container} + ${Container} {
     margin-top: 1rem;
   }
+
+  @media (max-width: 890px) {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+    }
 `

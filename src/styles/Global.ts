@@ -39,6 +39,10 @@ export const GlobalStyle = createGlobalStyle`
     @media (max-width: 720px) {
       font-size: 87.5%;
     }
+
+    /* @media (max-width: 320px) {
+      font-size: 70.5%;
+    } */
   }
 
   body {
@@ -87,6 +91,15 @@ export const GlobalStyle = createGlobalStyle`
     padding: 1.5rem;
     border-radius: 8px;
     color: var(--gray-300);
+  }
+
+  .update-book-modal {
+    background: var(--gray-800);
+    color: var(--gray-300);
+    width: 30rem;
+    height: 25rem;
+    padding: 2rem;
+    border-radius: 8px;
   }
   /* .react-modal-content {
     width: 100%;

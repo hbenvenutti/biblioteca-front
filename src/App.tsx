@@ -21,8 +21,8 @@ const App = () => {
   return (
     <>
       <AuthenticationProvider>
-      <ModalsProvider>
       <BooksProvider>
+      <ModalsProvider>
         
         <Header />
         <Content>
@@ -46,8 +46,8 @@ const App = () => {
       
       <BookDeleteModal/>
 
-      </BooksProvider>
       </ModalsProvider>
+      </BooksProvider>
       </AuthenticationProvider>
     </>
   )
