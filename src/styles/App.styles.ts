@@ -12,13 +12,6 @@ export const Content = styled.div`
   
   align-items: flex-start;
 
-  /* .bookList {
-    padding-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  } */
-
   main {
     padding: 0 2rem;
     display: flex;

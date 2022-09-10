@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
+import { AddBookButton } from './components/AddBookButton/AddBookButton';
 
 import { Book } from './components/Book/Book';
 import { Header } from './components/Header';
+import { RightPanel } from './components/RightPanel/RightPanel';
 import { SearchInput } from './components/SearchInput/SearchInput';
 import { Sidebar } from './components/Sidebar/Sidebar';
-import { AuthenticationProvider } from './hooks/useAuthentication';
+import { AuthenticationProvider, useAuthentication } from './hooks/useAuthentication';
 import { BooksProvider } from './hooks/useBooks';
 import { Content } from './styles/App.styles';
 import { GlobalStyle } from './styles/Global';
 
 const App = () => {
   const [isAuthModalOpen, setAuthModalOpen] = useState(false)
+  const {authentication} = useAuthentication();
+  console.log(authentication)
 
   return (
     <>
@@ -62,9 +66,7 @@ const App = () => {
               />
             </div>
           </main>
-
-
-          <SearchInput />
+          <RightPanel />
         </Content>
       
       <GlobalStyle />
