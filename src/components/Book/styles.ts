@@ -4,13 +4,32 @@ export const Container = styled.div`
   /* max-width: 27rem; */
   background: var(--gray-800);
   border-radius: 8px;
-  padding: 2.5rem;
+  padding:  2.5rem 2.5rem 0.05rem;
+
+  .buttonContainer {
+    height: 2.5rem;
+    display: flex;
+    justify-content: right;
+  }
+
+  .delete {
+    background: transparent;
+    color: var(--gray-300);
+    border: 0px;
+    margin-right: -30px;
+
+    transition: color 0.15s;
+  }
+
+  .delete:hover {
+    color: var(--pink-800);
+  }
 
   .header {
     display: flex;
     justify-content: space-between;
   
-  align-items: flex-start; 
+    align-items: flex-start; 
   }
 
   .bookInfo strong {
