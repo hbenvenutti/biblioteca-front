@@ -5,8 +5,10 @@ import bookCover from '../../assets/book.jpg';
 import { useAuthentication } from '../../hooks/useAuthentication';
 import { BookDeleteModal } from '../BookDeleteModal/BookDeleteModal';
 import { useBooks } from '../../hooks/useBooks';
+import { useModals } from '../../hooks/useModals';
 
 // ---------------------------------------------------------------------------------------------- //
+
 interface Book {
   id: string;
   title: string;
@@ -15,24 +17,26 @@ interface Book {
   edition: string;
   synopsis: string;
 }
+
 interface BookProps {
   book: Book;
-  openDeleteModal: () => void;
 }
 
 export const Book = (props: BookProps) => {
   const { authentication } = useAuthentication();
   const { updateBookData } = useBooks();
+  const {openDeleteBookModal, openUpdateBookModal} = useModals()
   
-  
-  
-  const onOpenDeleteModal = () => {
+  const onOpenDeleteBookModal = () => {
     console.log(props.book)
     updateBookData(props.book);
-    props.openDeleteModal();
+    openDeleteBookModal()
   }
 
-
+  const onOpenUpdateBookModal = () => {
+    updateBookData(props.book);
+    openUpdateBookModal();
+  } 
 
   return (
     <>
@@ -50,6 +54,7 @@ export const Book = (props: BookProps) => {
           </div>
 
         </div>
+
         <footer>
           <article>
             <p>
@@ -58,8 +63,21 @@ export const Book = (props: BookProps) => {
           </article>
 
           <div className='buttonContainer'>
-            {authentication && <button className='edit'><PencilSimpleLine size={25} /></button>}
-            {authentication && <button onClick={onOpenDeleteModal} className='delete'><Trash size={25} /></button>}
+            { authentication && 
+              <button 
+                onClick={onOpenUpdateBookModal} 
+                className='edit'>
+                  <PencilSimpleLine size={25} />
+              </button>
+            }
+
+            { authentication && 
+              <button 
+                onClick={onOpenDeleteBookModal} 
+                className='delete'>
+                  <Trash size={25}/>
+              </button>
+            }
           </div>
         </footer>
 

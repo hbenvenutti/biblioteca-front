@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { AddBookButton } from './components/AddBookButton/AddBookButton';
 
 import { Book } from './components/Book/Book';
 import { BookDeleteModal } from './components/BookDeleteModal/BookDeleteModal';
+import { BookUpdateModal } from './components/BookUpdateModal/BookUpdateModal';
 import { Header } from './components/Header';
 import { RightPanel } from './components/RightPanel/RightPanel';
-import { SearchInput } from './components/SearchInput/SearchInput';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { AuthenticationProvider, useAuthentication } from './hooks/useAuthentication';
 import { BooksProvider } from './hooks/useBooks';
+import { ModalsProvider } from './hooks/useModals';
 import { Content } from './styles/App.styles';
 import { GlobalStyle } from './styles/Global';
+
+// ---------------------------------------------------------------------------------------------- //
 
 const synopsis = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. \
                   Facilis unde eligendi incidunt, iste inventore et obcaecati consectetur,\
@@ -51,23 +53,13 @@ const book3 = {
 const App = () => {
   const books = [book1, book2, book3];
 
-  const [isAuthModalOpen, setAuthModalOpen] = useState(false)
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-
   const {authentication} = useAuthentication();
   console.log(authentication)
-
-  const openDeleteBookModal = () => {
-    setDeleteModalOpen(true);
-  }
-
-  const closeDeleteModal = () => {
-    setDeleteModalOpen(false);
-  }
 
   return (
     <>
       <AuthenticationProvider>
+      <ModalsProvider>
       <BooksProvider>
         
         <Header />
@@ -82,7 +74,9 @@ const App = () => {
             <div className='bookList'>
               {
                 books.map(book => {
-                  return <Book key={book.id} openDeleteModal={openDeleteBookModal} book={book}/>
+                  return (
+                    <Book key={book.id} book={book}/>
+                  )
                 })
               }
             </div>
@@ -92,14 +86,13 @@ const App = () => {
         </Content>
       
       
-      <GlobalStyle />
-
-      <BookDeleteModal 
-          isOpen={isDeleteModalOpen} 
-          onRequestClose={closeDeleteModal}
-      />
+      <GlobalStyle/>
+      <BookUpdateModal/> 
+      
+      <BookDeleteModal/>
 
       </BooksProvider>
+      </ModalsProvider>
       </AuthenticationProvider>
     </>
   )
