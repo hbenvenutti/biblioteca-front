@@ -16,25 +16,23 @@ interface Book {
   synopsis: string;
 }
 interface BookProps {
-  book: Book
+  book: Book;
+  openDeleteModal: () => void;
 }
 
 export const Book = (props: BookProps) => {
   const { authentication } = useAuthentication();
   const { updateBookData } = useBooks();
   
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   
   
-  const openDeleteModal = () => {
+  const onOpenDeleteModal = () => {
     console.log(props.book)
     updateBookData(props.book);
-    setDeleteModalOpen(true);
+    props.openDeleteModal();
   }
 
-  const closeDeleteModal = () => {
-    setDeleteModalOpen(false);
-  }
+
 
   return (
     <>
@@ -61,14 +59,10 @@ export const Book = (props: BookProps) => {
 
           <div className='buttonContainer'>
             {authentication && <button className='edit'><PencilSimpleLine size={25} /></button>}
-            {authentication && <button onClick={openDeleteModal} className='delete'><Trash size={25} /></button>}
+            {authentication && <button onClick={onOpenDeleteModal} className='delete'><Trash size={25} /></button>}
           </div>
         </footer>
-        <BookDeleteModal 
-          isOpen={isDeleteModalOpen} 
-          // book={props.book}
-          onRequestClose={closeDeleteModal}
-        />
+
       </Container>
     </>
   )

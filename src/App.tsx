@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AddBookButton } from './components/AddBookButton/AddBookButton';
 
 import { Book } from './components/Book/Book';
+import { BookDeleteModal } from './components/BookDeleteModal/BookDeleteModal';
 import { Header } from './components/Header';
 import { RightPanel } from './components/RightPanel/RightPanel';
 import { SearchInput } from './components/SearchInput/SearchInput';
@@ -48,9 +49,21 @@ const book3 = {
 }
 
 const App = () => {
+  const books = [book1, book2, book3];
+
   const [isAuthModalOpen, setAuthModalOpen] = useState(false)
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
   const {authentication} = useAuthentication();
   console.log(authentication)
+
+  const openDeleteBookModal = () => {
+    setDeleteModalOpen(true);
+  }
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+  }
 
   return (
     <>
@@ -67,9 +80,11 @@ const App = () => {
           
           <main>
             <div className='bookList'>
-              <Book book={book1}/>
-              <Book book={book2}/>
-              <Book book={book3}/>
+              {
+                books.map(book => {
+                  return <Book key={book.id} openDeleteModal={openDeleteBookModal} book={book}/>
+                })
+              }
             </div>
           </main>
           <RightPanel />
@@ -78,6 +93,11 @@ const App = () => {
       
       
       <GlobalStyle />
+
+      <BookDeleteModal 
+          isOpen={isDeleteModalOpen} 
+          onRequestClose={closeDeleteModal}
+      />
 
       </BooksProvider>
       </AuthenticationProvider>
