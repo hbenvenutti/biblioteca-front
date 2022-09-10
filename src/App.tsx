@@ -11,6 +11,42 @@ import { BooksProvider } from './hooks/useBooks';
 import { Content } from './styles/App.styles';
 import { GlobalStyle } from './styles/Global';
 
+const synopsis = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. \
+                  Facilis unde eligendi incidunt, iste inventore et obcaecati consectetur,\
+                  sapiente, qui animi praesentium in eum architecto ab.\
+                  Ducimus ex nam illo corporis!'
+
+const publisher = 'Harper Collins';
+const author =  'J.R.R. Tolkien';
+const edition = '1ª edição';
+
+const book1 = {
+    id: '1',
+    title: 'O senhor dos anéis: A sociedade do anel',
+    author,
+    publisher,
+    edition,
+    synopsis, 
+}
+
+const book2 = {
+  id: '2',
+  title: 'O senhor dos anéis: As duas torres',
+  author,
+  edition,
+  publisher,
+  synopsis, 
+}
+
+const book3 = {
+  id: '3',
+  title: 'O senhor dos anéis: O retorno do rei',
+  author,
+  publisher,
+  edition,
+  synopsis, 
+}
+
 const App = () => {
   const [isAuthModalOpen, setAuthModalOpen] = useState(false)
   const {authentication} = useAuthentication();
@@ -31,45 +67,18 @@ const App = () => {
           
           <main>
             <div className='bookList'>
-              <Book 
-                id='1'
-                title='O senhor dos anéis: As duas Torres'
-                author='J.R.R. Tolkien'
-                edition='1ª Edição'
-                publisher='Harper Collins'
-                synopsis='Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                          Facilis unde eligendi incidunt, iste inventore et obcaecati consectetur, 
-                          sapiente, qui animi praesentium in eum architecto ab. 
-                          Ducimus ex nam illo corporis!'
-              />
-              <Book 
-                id='2'
-                title='O senhor dos anéis: A sociedade do anel'
-                author='J.R.R. Tolkien'
-                edition='1ª Edição'
-                publisher='Harper Collins'
-                synopsis='Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                          Facilis unde eligendi incidunt, iste inventore et obcaecati consectetur, 
-                          sapiente, qui animi praesentium in eum architecto ab. 
-                          Ducimus ex nam illo corporis!'
-              />
-              <Book 
-                id='3'
-                title='O senhor dos anéis: O retorno do rei'
-                author='J.R.R. Tolkien'
-                edition='1ª Edição'
-                publisher='Harper Collins'
-                synopsis='Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                          Facilis unde eligendi incidunt, iste inventore et obcaecati consectetur, 
-                          sapiente, qui animi praesentium in eum architecto ab. 
-                          Ducimus ex nam illo corporis!'
-              />
+              <Book book={book1}/>
+              <Book book={book2}/>
+              <Book book={book3}/>
             </div>
           </main>
           <RightPanel />
+
         </Content>
       
+      
       <GlobalStyle />
+
       </BooksProvider>
       </AuthenticationProvider>
     </>
