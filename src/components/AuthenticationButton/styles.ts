@@ -7,7 +7,8 @@ export const Container = styled.button`
   border: 1px solid var(--pink-700);
   border-radius: 8px;
   padding: 0 1.5rem;
-  height: 50px;
+  height: 3.125rem;
+  width: 7.5rem;
   font-weight: bold;
   display: flex;
   align-items: center;
