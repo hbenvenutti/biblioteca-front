@@ -28,7 +28,7 @@ export const Book = (props: BookProps) => {
   const {openDeleteBookModal, openUpdateBookModal} = useModals()
   
   const onOpenDeleteBookModal = () => {
-    console.log(props.book)
+    console.log('book: ', props.book)
     updateBookData(props.book);
     openDeleteBookModal()
   }
