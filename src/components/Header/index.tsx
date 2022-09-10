@@ -1,17 +1,13 @@
 import React from 'react';
-import { LoginButton } from '../LoginButton';
-import { LogoutButton } from '../LogoutButton';
+import { AuthenticationButton } from '../AuthenticationButton';
 import {Books} from 'phosphor-react';
 import { Container, Content } from './styles';
 
-interface HeaderProps {
-  logged: boolean;
-}
+// ---------------------------------------------------------------------------------------------- //
 
-export function Header(props: HeaderProps) {
-  const button = props.logged ? <LogoutButton/> : <LoginButton />
-
-  return <>
+export function Header() {
+  return ( 
+  <>
     <Container>
       <Content>
         <div className="title">
@@ -19,8 +15,9 @@ export function Header(props: HeaderProps) {
           <h1> Biblioteca </h1>
         </div>
 
-        {button}
+        <AuthenticationButton/>
       </Content>
     </Container>
-  </>;
+  </>
+  );
 }

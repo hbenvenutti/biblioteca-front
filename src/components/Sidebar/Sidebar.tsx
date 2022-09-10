@@ -4,15 +4,17 @@ import {PencilSimpleLine} from 'phosphor-react';
 import { Container } from './styles';
 import { Avatar } from '../Avatar/Avatar';
 import cover from '../../assets/cover.jpg'
+import { useAuthentication } from '../../hooks/useAuthentication';
 
 interface SidebarProps {
-  logged: boolean;
   name: string;
   lastName: string
   email: string;
 }
 export const Sidebar = (props: SidebarProps) => {
-  if (!props.logged) {
+  const { authentication } = useAuthentication();
+
+  if (!authentication) {
     return (
       <Container>
       <img 
