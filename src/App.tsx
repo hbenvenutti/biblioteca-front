@@ -5,6 +5,7 @@ import { Header } from './components/Header';
 import { SearchInput } from './components/SearchInput/SearchInput';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { AuthenticationProvider } from './hooks/useAuthentication';
+import { BooksProvider } from './hooks/useBooks';
 import { Content } from './styles/App.styles';
 import { GlobalStyle } from './styles/Global';
 
@@ -14,6 +15,8 @@ const App = () => {
   return (
     <>
       <AuthenticationProvider>
+      <BooksProvider>
+        
         <Header />
         <Content>
           <Sidebar 
@@ -35,6 +38,7 @@ const App = () => {
         </Content>
       
       <GlobalStyle />
+      </BooksProvider>
       </AuthenticationProvider>
     </>
   )
