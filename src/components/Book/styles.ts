@@ -10,6 +10,18 @@ export const Container = styled.div`
     height: 2.5rem;
     display: flex;
     justify-content: right;
+    gap: 0.5rem;
+  }
+
+  .edit {
+    background: transparent;
+    color: var(--gray-300);
+    border: 0px;
+    transition: color 0.15s;
+  }
+
+  .edit:hover {
+    color: var(--pink-800);
   }
 
   .delete {
@@ -28,7 +40,7 @@ export const Container = styled.div`
   .header {
     display: flex;
     justify-content: space-between;
-  
+    gap: 0.5rem;
     align-items: flex-start; 
   }
 
@@ -41,7 +53,7 @@ export const Container = styled.div`
   .bookInfo span {
     margin-top: 0.5rem;
     display: block;
-    color: var(--pink-400)
+    color: var(--gray-400)
   }
 
   .bookInfo span + span {
@@ -58,12 +70,12 @@ export const Container = styled.div`
   .edition span {
     margin: auto;
     margin-top: 0.5rem;
-    color: var(--pink-300)
+    color: var(--gray-400)
   }
 
   .edition p {
     margin: 0.5rem auto;
-    color: var(--pink-300);
+    color: var(--gray-400);
   }
 
   img {
@@ -78,5 +90,9 @@ export const Container = styled.div`
     border-top: 1px solid var(--gray-600);
     margin-top: 1.5rem;
     padding: 1rem 1rem 1rem;
+  }
+
+  article p {
+    text-align: justify;
   }
 `

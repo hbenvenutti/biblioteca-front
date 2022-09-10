@@ -1,10 +1,20 @@
 import React from 'react';
 import { Container } from './styles';
-import { Trash } from 'phosphor-react'
+import { Trash, PencilSimpleLine } from 'phosphor-react'
 import bookCover from '../../assets/book.jpg';
 import { useAuthentication } from '../../hooks/useAuthentication';
 
-export const Book = () => {
+// ---------------------------------------------------------------------------------------------- //
+interface BookProps {
+  id: string;
+  title: string;
+  publisher: string;
+  author: string;
+  edition: string;
+  synopsis: string;
+}
+
+export const Book = (props: BookProps) => {
   const { authentication } = useAuthentication();
 
   return (
@@ -13,30 +23,27 @@ export const Book = () => {
       <div className="header">
 
         <div className="bookInfo">
-          <strong>O senhor dos anéis: O retorno do rei</strong>
+          <strong>{props.title}</strong>
           <span>J.R.R. Tolkien</span>
         </div>
 
         <div className='edition'>
           <img src={bookCover} alt="book cover" />
-          <span>Harper Collins</span>
-          <p>1ª Edição</p>
+          <span>{props.publisher}</span>
+          <p>{props.edition}</p>
         </div>
 
       </div>
       <footer>
         <article>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Possimus repellat illo atque harum sed. 
-            Similique repudiandae qui quisquam, 
-            laudantium amet rerum quidem reiciendis porro exercitationem dolor ab, 
-            tempore molestiae id!
+            {props.synopsis}
           </p>
         </article>
-    
+
         <div className='buttonContainer'>
-          {authentication && <button className='delete'><Trash size={25}/></button> }
+          {authentication && <button className='edit'><PencilSimpleLine size={25} /></button>}
+          {authentication && <button className='delete'><Trash size={25} /></button>}
         </div>
       </footer>
     </Container>
