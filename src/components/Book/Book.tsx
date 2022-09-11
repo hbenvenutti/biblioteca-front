@@ -6,6 +6,7 @@ import { useAuthentication } from '../../hooks/useAuthentication';
 import { BookDeleteModal } from '../BookDeleteModal/BookDeleteModal';
 import { useBooks } from '../../hooks/useBooks';
 import { useModals } from '../../hooks/useModals';
+import { BookUpdateModal } from '../BookUpdateModal/BookUpdateModal';
 
 // ---------------------------------------------------------------------------------------------- //
 
@@ -82,6 +83,7 @@ export const Book = (props: BookProps) => {
         </footer>
 
       </Container>
+      <BookUpdateModal book={props.book}/>
     </>
   )
 }

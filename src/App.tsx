@@ -42,7 +42,7 @@ const App = () => {
       
       
       <GlobalStyle/>
-      <BookUpdateModal/> 
+      {/* <BookUpdateModal/>  */}
       
       <BookDeleteModal/>
 
