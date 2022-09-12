@@ -6,13 +6,6 @@ export const Container = styled.div`
   gap: 2rem;
   height: 100%;
 
-  /* .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    gap: 2rem;
-  } */
-
   .send {
     background: transparent;
     color: var(--pink-800);
@@ -67,6 +60,8 @@ export const Container = styled.div`
   }
 
   ul {
+    /* margin-top: -3rem; */
+    max-width: 25rem;
     font-size: 0.9rem;
     box-sizing: initial;
     margin-left: 1rem;
@@ -74,7 +69,8 @@ export const Container = styled.div`
 
   .visibility-button{
     display: flex;
-    justify-content: right;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-top: -1rem;
   }
 

@@ -126,20 +126,21 @@ export const RegistrationModal = () => {
             </div>
           </div>
           <div className='visibility-button'>
-            <button onClick={handlePasswordVisibility}>
+            <ul>
+              <ListItem key='3' error={passwordsMatchError} text='As senhas devem combinar.'/>
+              <ListItem key='1' error={minLengthError} text='A senha deve conter no mínimo 8 caracteres.'/>
+              <ListItem key='5' error={lowerCaseError} text='A senha deve conter no mínimo 1 letra minúscula.'/>
+              <ListItem key='2' error={upperCaseError} text='A senha deve conter no mínimo 1 letra maiúscula.'/>
+              <ListItem key='4' error={numberError} text='A senha deve conter no mínimo 1 número.'/>
+              <ListItem key='6' error={symbolError} text='A senha deve conter no mínimo 1 símbolo. (#@$)'/>
+              <ListItem key='7' error={sequenceError} text='A senha não deve conter sequências (123 | abc).'/>
+            </ul>
+            <button type='button' onClick={handlePasswordVisibility}>
               {inputPasswordType === 'text' ? <EyeSlash size={20}/> : <Eye size={20}/>}
             </button>
           </div>
 
-          <ul>
-            <ListItem key='3' error={passwordsMatchError} text='As senhas devem combinar.'/>
-            <ListItem key='1' error={minLengthError} text='A senha deve conter no mínimo 8 caracteres.'/>
-            <ListItem key='5' error={lowerCaseError} text='A senha deve conter no mínimo 1 letra minúscula.'/>
-            <ListItem key='2' error={upperCaseError} text='A senha deve conter no mínimo 1 letra maiúscula.'/>
-            <ListItem key='4' error={numberError} text='A senha deve conter no mínimo 1 número.'/>
-            <ListItem key='6' error={symbolError} text='A senha deve conter no mínimo 1 símbolo. (#@$)'/>
-            <ListItem key='7' error={sequenceError} text='A senha não deve conter sequências (123 | abc).'/>
-          </ul>
+
 
           <div className='button-container'>  
             <button type='submit' className='send'>Enviar</button>
