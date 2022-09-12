@@ -92,3 +92,11 @@ export const Container = styled.div`
     justify-content: right;
   }
 `
+
+interface ListItemProps {
+  error: boolean;
+}
+
+export const ListItemStyle = styled.li<ListItemProps>`
+  color: ${(props) => props.error ? '#be185d' : '#c4c4cc'}
+`

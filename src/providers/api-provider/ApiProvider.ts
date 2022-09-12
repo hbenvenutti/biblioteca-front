@@ -27,12 +27,9 @@ export class ApiProvider implements ApiProviderInterface {
     try {
       const response = await this.api.post('/accounts/users', data);
       
-      console.log(response.data);
-
       return response.data as User;
       
     } catch (error) {
-      console.log(error);
       return error as RequestFail
     }
 

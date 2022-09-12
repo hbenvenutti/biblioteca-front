@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import yupPassword from 'yup-password';
 
-import { RegistrationData, ValidationProviderInterface } from "./ValidationProviderInterface";
+import { ErrorKeys, RegistrationData, ValidationProviderInterface } from "./ValidationProviderInterface";
 
 export class ValidationProvider implements ValidationProviderInterface {
   constructor() {
@@ -19,26 +19,42 @@ export class ValidationProvider implements ValidationProviderInterface {
     return await schema.isValid(data);
   }
 
-  async validatePassword(password: string): Promise<void> {
+  async validatePassword(password: string): Promise<ErrorKeys> {
     yupPassword(yup);
+    const errorKeys = {
+      error: false,
+      upper: false,
+      lower: false,
+      min: false,
+      number: false,
+      symbol: false,
+      sequence: false,
+    }
 
     const schema = yup
     .string()
     .password()
-    .min(8)
+    .min(8, 'min')
     .max(30)
-    .minUppercase(1)
-    .minNumbers(1)
-    .minRepeating(3)
-    .minSymbols(1)
+    .minLowercase(1,'lower')
+    .minUppercase(1, 'upper')
+    .minNumbers(1, 'number')
+    .minRepeating(3, 'sequence')
+    .minSymbols(1, 'symbol')
     
     try {
-      console.log(password);
-      console.log(schema);
       await  schema.validate(password, {abortEarly: false});
+
+      return errorKeys;
     } 
     catch (e: any) {
-      console.log('error: ', e.errors);
+      const errors = e.errors 
+
+      errors.map((error: keyof typeof errorKeys) => errorKeys[error] = true)
+
+      errorKeys.error = true;
+
+      return errorKeys;
     }
   };
 
