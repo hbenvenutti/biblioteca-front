@@ -72,9 +72,16 @@ export const Container = styled.div`
     margin-left: 1rem;
   }
 
+  .visibility-button{
+    display: flex;
+    justify-content: right;
+    margin-top: -1rem;
+  }
+
   .section {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 1rem;
   }

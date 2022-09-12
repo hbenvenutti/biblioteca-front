@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import {EyeSlash, Eye} from 'phosphor-react'; 
 import { useModals } from '../../hooks/useModals';
 import { apiProvider } from '../../providers/api-provider/ApiProviderFactory';
 import { validationProvider } from '../../providers/validation-provider/ValidationProviderFactory';
@@ -14,6 +15,7 @@ export const RegistrationModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [inputPasswordType, setInputPasswordType] = useState('password')
   
   // *** ---- DataError --------------------------------------------------------------------- *** //
   const [passwordsMatchError, setPasswordsMatchError] = useState(false);
@@ -44,7 +46,6 @@ export const RegistrationModal = () => {
     }
 
     if (dataValidationResult && !passwordValidationResult.error) {
-      console.log('sucesso')
       await apiProvider.createUser({name, lastName, email, password, passwordConfirmation})
       
       resetAllStates();
@@ -69,6 +70,16 @@ export const RegistrationModal = () => {
     setSequenceError(false);  
   };
 
+  const handlePasswordVisibility = () => {
+    if (inputPasswordType === 'password') {
+      setInputPasswordType('text');
+
+      return;
+    }
+
+    setInputPasswordType('password');
+    return;
+  }
 
   return (
     <Modal
@@ -100,19 +111,24 @@ export const RegistrationModal = () => {
 
           <div className='section'>
             <div className='input-group'>
-              <label>Senha</label>
-                <input onChange={(e) => setPassword(e.target.value)} type="text" id='password'/>
+              <label>Senha 
+              </label>
+                <input onChange={(e) => setPassword(e.target.value)} type={inputPasswordType} id='password'/>
             </div>
             
             <div className='input-group'>
               <label>Confirme a senha</label>
               <input 
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
-                type="password"
+                type={inputPasswordType}
                 id='password-confirmation'
               />
-              
             </div>
+          </div>
+          <div className='visibility-button'>
+            <button onClick={handlePasswordVisibility}>
+              {inputPasswordType === 'text' ? <EyeSlash size={20}/> : <Eye size={20}/>}
+            </button>
           </div>
 
           <ul>
