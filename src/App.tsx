@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AuthenticationModal } from './components/AuthenticationModal/AuthenticationModal';
 
 import { BookDeleteModal } from './components/BookDeleteModal/BookDeleteModal';
 import { BookList } from './components/BookList/BookList';
@@ -45,7 +46,7 @@ const App = () => {
       {/* <BookUpdateModal/>  */}
       
       <BookDeleteModal/>
-
+      <AuthenticationModal />
       </ModalsProvider>
       </BooksProvider>
       </AuthenticationProvider>

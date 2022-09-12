@@ -1,6 +1,7 @@
 import React from 'react';
 import { BiLogIn } from 'react-icons/bi';
 import { useAuthentication } from '../../hooks/useAuthentication';
+import { useModals } from '../../hooks/useModals';
 import { Container } from './styles';
 
 // interface ButtonProps {
@@ -8,7 +9,8 @@ import { Container } from './styles';
 // }
 
 export const AuthenticationButton = () => {
-  const { authentication, logout, login } = useAuthentication()
+  const { authentication, logout, login } = useAuthentication();
+  const {openAuthenticationModal} = useModals()
 
   const text = authentication ? 'Logout' : 'Login';
   
@@ -18,7 +20,8 @@ export const AuthenticationButton = () => {
       return;
     }
 
-    login();
+    openAuthenticationModal();
+    // login();
   }
   
   return (

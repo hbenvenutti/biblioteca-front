@@ -101,6 +101,16 @@ export const GlobalStyle = createGlobalStyle`
     padding: 2rem;
     border-radius: 8px;
   }
+
+  .authentication-modal {
+    background: var(--gray-800);
+    color: var(--gray-300);
+    width: 40rem;
+    height: 30rem;
+    padding: 2rem;
+    border-radius: 8px;
+  };
+
   /* .react-modal-content {
     width: 100%;
     max-width: 576px;

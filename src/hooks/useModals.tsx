@@ -3,13 +3,15 @@ import React, { createContext, ReactNode, useContext, useState } from "react";
 // ---------------------------------------------------------------------------------------------- //
 
 interface ModalsContextData {
-  isAuthModalOpen: boolean;
+  isAuthenticationModalOpen: boolean;
   isUpdateBookModalOpen: boolean;
   isDeleteBookModalOpen: boolean;
   openDeleteBookModal: () => void;
   closeDeleteBookModal: () => void;
   openUpdateBookModal: () => void;
   closeUpdateBookModal: () => void;
+  openAuthenticationModal: () => void;
+  closeAuthenticationModal: () => void;
 }
 
 interface ModalsProps {
@@ -22,7 +24,7 @@ const ModalsContext =
   createContext<ModalsContextData>({} as ModalsContextData);
 
   export const ModalsProvider = ({children}: ModalsProps) => {
-    const [isAuthModalOpen, setAuthModalOpen] = useState(false)
+    const [isAuthenticationModalOpen, setAuthenticationModalOpen] = useState(false)
     const [isUpdateBookModalOpen, setUpdateBookModalOpen] = useState(false)
     const [isDeleteBookModalOpen, setDeleteBookModalOpen] = useState(false);
 
@@ -42,17 +44,27 @@ const ModalsContext =
       setUpdateBookModalOpen(false);
     }
 
+    const openAuthenticationModal = () => {
+      setAuthenticationModalOpen(true);
+    }
+  
+    const closeAuthenticationModal = () => {
+      setAuthenticationModalOpen(false);
+    }
+
     return (
       <ModalsContext.Provider 
         value={
           {
-            isAuthModalOpen,
+            isAuthenticationModalOpen,
             isDeleteBookModalOpen,
             isUpdateBookModalOpen,
             openDeleteBookModal, 
             closeDeleteBookModal, 
             openUpdateBookModal, 
-            closeUpdateBookModal
+            closeUpdateBookModal,
+            openAuthenticationModal,
+            closeAuthenticationModal
           }
         }>
           {children}
