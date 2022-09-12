@@ -27,6 +27,7 @@ export const Container = styled.div`
     justify-content: left;
     gap: 1rem;
   }
+  
   form {
     display: flex;
     flex-direction: column;

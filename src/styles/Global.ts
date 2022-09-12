@@ -114,9 +114,20 @@ export const GlobalStyle = createGlobalStyle`
   .registration-modal {
     background: var(--gray-800);
     color: var(--gray-300);
-    width: 35rem;
+    width: 38rem;
     height: 38rem;
     padding: 2rem;
     border-radius: 8px;
   };
+
+  @media (max-width: 520px) {
+    .registration-modal {
+      width: 30rem;
+      height: 45rem;
+      .section {
+        /* display: flex; */
+        flex-direction: column;
+      }
+    }
+  }
 `;
