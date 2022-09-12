@@ -27,6 +27,7 @@ export const RegistrationModal = () => {
   const [sequenceError, setSequenceError] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    event.preventDefault();
     if (password != passwordConfirmation) {
       setPasswordsMatchError(true);
     }
