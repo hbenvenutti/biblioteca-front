@@ -81,12 +81,17 @@ export const RegistrationModal = () => {
     return;
   }
 
+  const handleCloseModal = () => {
+    resetAllStates();
+    closeRegistrationModal()
+  }
+
   return (
     <Modal
       overlayClassName="react-modal-overlay" 
       className="registration-modal" 
       isOpen={isRegistrationModalOpen} 
-      onRequestClose={closeRegistrationModal}
+      onRequestClose={handleCloseModal}
     >
 
       <Container>

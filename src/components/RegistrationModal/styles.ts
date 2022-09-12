@@ -101,5 +101,6 @@ interface ListItemProps {
 }
 
 export const ListItemStyle = styled.li<ListItemProps>`
+  transition: color 0.2s;
   color: ${(props) => props.error ? '#be185d' : '#c4c4cc'}
 `
