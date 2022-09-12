@@ -3,8 +3,8 @@ import { AuthenticationModal } from './components/AuthenticationModal/Authentica
 
 import { BookDeleteModal } from './components/BookDeleteModal/BookDeleteModal';
 import { BookList } from './components/BookList/BookList';
-import { BookUpdateModal } from './components/BookUpdateModal/BookUpdateModal';
 import { Header } from './components/Header';
+import { RegistrationModal } from './components/RegistrationModal/RegistrationModal';
 import { RightPanel } from './components/RightPanel/RightPanel';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { AuthenticationProvider, useAuthentication } from './hooks/useAuthentication';
@@ -47,6 +47,7 @@ const App = () => {
       
       <BookDeleteModal/>
       <AuthenticationModal />
+      <RegistrationModal />
       </ModalsProvider>
       </BooksProvider>
       </AuthenticationProvider>

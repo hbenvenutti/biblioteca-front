@@ -3,8 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 2rem;
   height: 100%;
+
+  /* .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 2rem;
+  } */
 
   .send {
     background: transparent;
@@ -27,7 +34,13 @@ export const Container = styled.div`
     justify-content: left;
     gap: 1rem;
   }
-
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 2rem;
+  }
+  
   button {
     color: var(--gray-300);
     background: transparent;
@@ -48,30 +61,34 @@ export const Container = styled.div`
     height: 2rem;
   }
 
-  .content {
-    /* margin: 0 5rem; */
+  strong {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  ul {
+    font-size: 0.9rem;
+    box-sizing: initial;
+    margin-left: 1rem;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .input-group {
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    gap: 2rem;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
 
-    strong {
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .button-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: right;
-    }
+  .button-container {
+    display: flex;
+    justify-content: right;
   }
 `
-
-

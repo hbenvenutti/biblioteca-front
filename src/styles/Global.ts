@@ -105,8 +105,17 @@ export const GlobalStyle = createGlobalStyle`
   .authentication-modal {
     background: var(--gray-800);
     color: var(--gray-300);
+    width: 30rem;
+    height: 25rem;
+    padding: 2rem;
+    border-radius: 8px;
+  };
+
+  .registration-modal {
+    background: var(--gray-800);
+    color: var(--gray-300);
     width: 40rem;
-    height: 30rem;
+    height: 35rem;
     padding: 2rem;
     border-radius: 8px;
   };
