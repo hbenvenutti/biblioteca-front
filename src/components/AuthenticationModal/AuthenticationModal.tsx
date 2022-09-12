@@ -28,6 +28,7 @@ export const AuthenticationModal = () => {
   }
   
   const onSubmit = async (e: any) => {
+    e.preventDefault();
     // console.log(email);
     // console.log(password);
     const loginResult = await login({email, password});
