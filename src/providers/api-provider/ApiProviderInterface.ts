@@ -41,7 +41,7 @@ export type Book = {
 
 export interface ApiProviderInterface {
   createUser(data:CreateUserData): Promise<User | RequestFail>;
-  login(data: LoginData): Promise<User | RequestFail>;
+  login(data: LoginData): Promise<User | undefined>;
 
   addBook(data: BookCreationData): Promise<Book | RequestFail>;
   deleteBook(id: Id): Promise<void | RequestFail>;

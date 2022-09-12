@@ -24,11 +24,7 @@ const App = () => {
         
         <Header />
         <Content>
-          <Sidebar 
-            email='huambenvenutti@gmail.com'
-            name='Huam'
-            lastName='Benvenutti'
-          />
+          <Sidebar/>
           
           <main>
             <BookList/>

@@ -35,15 +35,15 @@ export class ApiProvider implements ApiProviderInterface {
 
   };
 
-  async login(data: LoginData): Promise<RequestFail | User> {
+  async login(data: LoginData): Promise<User | undefined> {
     try {
       const response = await this.api.post('/accounts/sessions', data);
       localStorage.setItem('token', response.data.token);
-
+      console.log('logged: ',response.data.user);
       return response.data.user as User;
     } 
     catch (error) {
-      return error as RequestFail;
+      console.log(error);
     }
   }
   

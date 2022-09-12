@@ -27,19 +27,19 @@ export const AuthenticationModal = () => {
     closeAuthenticationModal();
   }
   
-  const onSubmit = (e: any) => {
-    console.log(email);
-    console.log(password);
-    login();
-    onRequestClose()
-  };
+  const onSubmit = async (e: any) => {
+    // console.log(email);
+    // console.log(password);
+    const loginResult = await login({email, password});
 
-  const updatePassword = (input: string) => {
-    console.log('input:', input);
-    setPassword(input);
-    console.log('password after:', password);
+    if (loginResult) {
+      console.log('login')
+      onRequestClose()
+      return;
+    }
+
     return;
-  }
+  };
 
   // *** ---- TSX --------------------------------------------------------------------------- *** //
   return (
@@ -59,7 +59,7 @@ export const AuthenticationModal = () => {
 
           <div>
             <label htmlFor="password">Senha</label>
-            <input onChange={(e) => updatePassword(e.target.value)} type="password" id='password'/>
+            <input onChange={(e) => setPassword(e.target.value)} type="password" id='password'/>
           </div>
 
           <div className='button-container'>

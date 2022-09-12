@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { apiProvider } from "../providers/api-provider/ApiProviderFactory";
 
 // *** ---- Interfaces ---------------------------------------------------------------------- *** //
 interface User {
@@ -10,8 +11,13 @@ interface User {
 interface AuthenticationContextData {
   user: User;
   authentication: boolean
-  login: () => Promise<void>
+  login: (credentials: Credentials) => Promise<boolean>
   logout: () => Promise<void>
+}
+
+interface Credentials {
+  email: string;
+  password: string;
 }
 
 // ---------------------------------------------------------------------------------------------- //
@@ -27,12 +33,37 @@ export const AuthenticationProvider = ({children}: AuthenticationProps) => {
   const [authentication, setAuthentication] = useState(false);
   const [user, setUser] = useState({name: '', lastName: '', email: ''});
 
-  const login = async () => {
-    setAuthentication(true);
-    setUser({name: 'Huam', lastName: 'Benvenutti', email: 'huambenvenutti@gmail.com'})
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+
+      const user = localStorage.getItem('user');
+
+      if (user) setUser(JSON.parse(user));
+
+      setAuthentication(true);
+    }
+  }, []);
+
+  const login = async (credentials: Credentials): Promise<boolean> => {
+    const response = await apiProvider.login(credentials);
+
+    if (response) {
+      const {name, email, lastName} = response;
+
+      setAuthentication(true);
+      localStorage.setItem('user', JSON.stringify({name, email, lastName}));
+
+      setUser({name, lastName, email});
+      
+      return true;
+    }
+    return false;
   }
 
   const logout = async () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setAuthentication(false);
     setUser({name:'', lastName: '', email: ''});
   }

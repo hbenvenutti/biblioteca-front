@@ -6,13 +6,8 @@ import { Avatar } from '../Avatar/Avatar';
 import cover from '../../assets/cover.jpg'
 import { useAuthentication } from '../../hooks/useAuthentication';
 
-interface SidebarProps {
-  name: string;
-  lastName: string
-  email: string;
-}
-export const Sidebar = (props: SidebarProps) => {
-  const { authentication } = useAuthentication();
+export const Sidebar = () => {
+  const { authentication, user } = useAuthentication();
 
   if (!authentication) {
     return (
@@ -45,8 +40,8 @@ export const Sidebar = (props: SidebarProps) => {
       <div className="profile">
         <Avatar />
 
-        <strong>{`${props.name} ${props.lastName}`}</strong>
-        <span>{props.email}</span>
+        <strong>{`${user.name} ${user.lastName}`}</strong>
+        <span>{user.email}</span>
       </div>
     
       <footer>
