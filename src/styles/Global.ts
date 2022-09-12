@@ -114,7 +114,7 @@ export const GlobalStyle = createGlobalStyle`
   .registration-modal {
     background: var(--gray-800);
     color: var(--gray-300);
-    width: 32rem;
+    width: 35rem;
     height: 38rem;
     padding: 2rem;
     border-radius: 8px;
