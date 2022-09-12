@@ -16,9 +16,6 @@ import { GlobalStyle } from './styles/Global';
 // ---------------------------------------------------------------------------------------------- //
 
 const App = () => {
-  const {authentication} = useAuthentication();
-  console.log('authentication: ', authentication)
-
   return (
     <>
       <AuthenticationProvider>
@@ -43,7 +40,6 @@ const App = () => {
       
       
       <GlobalStyle/>
-      {/* <BookUpdateModal/>  */}
       
       <BookDeleteModal/>
       <AuthenticationModal />
