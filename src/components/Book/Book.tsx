@@ -7,6 +7,7 @@ import { BookDeleteModal } from '../BookDeleteModal/BookDeleteModal';
 import { useBooks } from '../../hooks/useBooks';
 import { useModals } from '../../hooks/useModals';
 import { BookUpdateModal } from '../BookUpdateModal/BookUpdateModal';
+import { capitalizeMany } from '../../utils/capitalize';
 
 // ---------------------------------------------------------------------------------------------- //
 
@@ -45,14 +46,14 @@ export const Book = (props: BookProps) => {
       <Container>
         <div className="header">
           <div className="bookInfo">
-            <strong>{props.book.title}</strong>
-            <span>{props.book.author}</span>
+            <strong>{capitalizeMany(props.book.title)}</strong>
+            <span>{props.book.author.toUpperCase()}</span>
           </div>
 
           <div className='edition'>
             <img src={bookCover} alt="book cover" />
-            <span>{props.book.publisher}</span>
-            <p>{props.book.edition}</p>
+            <span>{capitalizeMany(props.book.publisher)}</span>
+            <p>{capitalizeMany(props.book.edition)}</p>
           </div>
 
         </div>

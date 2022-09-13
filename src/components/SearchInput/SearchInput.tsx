@@ -7,7 +7,7 @@ export const SearchInput = () => {
   const { getBooks } = useBooks();
   
   const onChange = (text: string) => {
-    getBooks(text);
+    getBooks(text.toLocaleLowerCase());
   }
 
   return (
