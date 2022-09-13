@@ -5,6 +5,7 @@ import { Container } from './styles';
 import { Page } from './Page';
 import { SynopsisPage } from './SynopsisPage';
 import { apiProvider } from '../../providers/api-provider/ApiProviderFactory';
+import { useBooks } from '../../hooks/useBooks';
 
 // ---------------------------------------------------------------------------------------------- //
 interface Book {
@@ -20,6 +21,7 @@ export const BookCreationModal = () => {
   Modal.setAppElement('#root');
   
   const {isCreateBookModalOpen, closeCreateBookModal} = useModals();
+  const {getBooks} = useBooks();
 
   // *** ---- States ------------------------------------------------------------------------ *** //
   const [title, setTitle] = useState('');
@@ -74,7 +76,7 @@ export const BookCreationModal = () => {
   const handleSubmit = async (event:any) => {
     event.preventDefault();
     await apiProvider.addBook({title,author, edition, publisher, synopsis})
-    
+    getBooks();
     onRequestClose();
     return;
   }

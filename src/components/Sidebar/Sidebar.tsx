@@ -5,6 +5,7 @@ import { Container } from './styles';
 import { Avatar } from '../Avatar/Avatar';
 import cover from '../../assets/cover.jpg'
 import { useAuthentication } from '../../hooks/useAuthentication';
+import { capitalize } from '../../utils/capitalize';
 
 export const Sidebar = () => {
   const { authentication, user } = useAuthentication();
@@ -40,7 +41,7 @@ export const Sidebar = () => {
       <div className="profile">
         <Avatar />
 
-        <strong>{`${user.name} ${user.lastName}`}</strong>
+        <strong>{`${capitalize(user.name)} ${capitalize(user.lastName)}`}</strong>
         <span>{user.email}</span>
       </div>
     
