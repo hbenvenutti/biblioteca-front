@@ -3,6 +3,8 @@
 .vscode/.cspell
 !.vscode/extensions.json
 
+dist/
+
 # Logs
 logs
 *.log

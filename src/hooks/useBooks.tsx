@@ -25,13 +25,12 @@ interface BooksProps {
 
 
 // ---------------------------------------------------------------------------------------------- //
-const initialBookList = await apiProvider.listAllBooks();
 
 const BooksContext = 
   createContext<BooksContextData>({} as BooksContextData);
 
 export const BooksProvider = ({children}: BooksProps) => {
-  const [books, setBooks] = useState<Book[]>(initialBookList ? initialBookList : []);
+  const [books, setBooks] = useState<Book[]>([]);
   const [bookToEdit, setBookToEdit] = useState<Book>()
 
   const updateBookToEdit = (book: Book): void => {
@@ -57,6 +56,10 @@ export const BooksProvider = ({children}: BooksProps) => {
 
     setBooks([]);
   }
+
+  useEffect(() => {
+    getBooks()
+  }, [])
 
   return (
     <BooksContext.Provider value={{books, bookToEdit, getBooks, updateBookToEdit}}>

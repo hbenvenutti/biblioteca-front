@@ -9,7 +9,7 @@ import { Container } from './styles';
 export const BookDeleteModal = () => {
   Modal.setAppElement('#root');
 
-  const {activeBook} = useBooks()
+  const {bookToEdit} = useBooks()
   const {isDeleteBookModalOpen, closeDeleteBookModal} = useModals()
 
   return (
@@ -24,7 +24,7 @@ export const BookDeleteModal = () => {
       <p>
         Você tem certeza que gostaria de remover 
         <br/>
-        <span>{activeBook?.title}</span> ?
+        <span>{bookToEdit?.title}</span> ?
       </p>
       
       <div className="button-container">
