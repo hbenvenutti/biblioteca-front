@@ -3,13 +3,11 @@ import { useBooks } from '../../hooks/useBooks';
 import { Container } from "./SearchInput.style";
 
 export const SearchInput = () => {
-  const [ searchText, setSearchText ] = useState(''); 
   
-  const { searchBooks } = useBooks();
+  const { getBooks } = useBooks();
   
   const onChange = (text: string) => {
-    setSearchText(text);
-    searchBooks(searchText);
+    getBooks(text);
   }
 
   return (

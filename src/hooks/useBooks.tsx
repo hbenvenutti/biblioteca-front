@@ -14,7 +14,6 @@ interface Book {
 
 interface BooksContextData {
   books: Book[];
-  searchBooks: (searchText: string) => Promise<void>;
   getBooks: (searchText?: string) => Promise<void>;
 };
 
@@ -32,10 +31,6 @@ const BooksContext =
 export const BooksProvider = ({children}: BooksProps) => {
   const [books, setBooks] = useState<Book[]>(initialBookList ? initialBookList : []);
 
-  const searchBooks = async (searchText: string) => {
-    console.log('Procurando por ', searchText);
-    getBooks(searchText)
-  }
 
   const getBooks = async (search?: string) => {
     let response;
@@ -56,10 +51,12 @@ export const BooksProvider = ({children}: BooksProps) => {
       setBooks(response);
       return;
     }
+
+    setBooks([]);
   }
 
   return (
-    <BooksContext.Provider value={{books, searchBooks, getBooks}}>
+    <BooksContext.Provider value={{books, getBooks}}>
       {children}
     </BooksContext.Provider>
   )
