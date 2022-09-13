@@ -25,7 +25,7 @@ export const Page2 = (props: PageProps) => {
         <label htmlFor='edition'>Edição:</label>
         <input 
           id='edition' 
-          defaultValue={bookToEdit ? bookToEdit.publisher : ''} 
+          defaultValue={bookToEdit ? bookToEdit.edition : ''} 
           onChange={(e) => props.onChangeEdition(e.target.value)}
         />
       </div>
