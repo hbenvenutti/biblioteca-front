@@ -25,7 +25,7 @@ interface BookProps {
 
 export const Book = (props: BookProps) => {
   const { authentication } = useAuthentication();
-  // const { updateBookData } = useBooks();
+  const { updateBookToEdit } = useBooks();
   const {openDeleteBookModal, openUpdateBookModal} = useModals()
   
   const onOpenDeleteBookModal = () => {
@@ -35,7 +35,8 @@ export const Book = (props: BookProps) => {
   }
 
   const onOpenUpdateBookModal = () => {
-    // updateBookData(props.book);
+    console.log('inside book', props.book);
+    updateBookToEdit(props.book);
     openUpdateBookModal();
   } 
 
@@ -83,7 +84,7 @@ export const Book = (props: BookProps) => {
         </footer>
 
       </Container>
-      <BookUpdateModal book={props.book}/>
+      {/* <BookUpdateModal book={props.book}/> */}
     </>
   )
 }

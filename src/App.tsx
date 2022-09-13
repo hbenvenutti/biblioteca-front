@@ -4,6 +4,7 @@ import { BookCreationModal } from './components/BookCreationModal/BookCreationMo
 
 import { BookDeleteModal } from './components/BookDeleteModal/BookDeleteModal';
 import { BookList } from './components/BookList/BookList';
+import { BookUpdateModal } from './components/BookUpdateModal/BookUpdateModal';
 import { Header } from './components/Header';
 import { RegistrationModal } from './components/RegistrationModal/RegistrationModal';
 import { RightPanel } from './components/RightPanel/RightPanel';
@@ -40,6 +41,7 @@ const App = () => {
         
         <BookCreationModal/>
         <BookDeleteModal/>
+        <BookUpdateModal/>
         <AuthenticationModal />
         <RegistrationModal />
         

@@ -1,7 +1,10 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import { useBooks } from '../../hooks/useBooks';
 import { useModals } from '../../hooks/useModals';
-import { Page } from './Page'
+import { apiProvider } from '../../providers/api-provider/ApiProviderFactory';
+import { Page1 } from './Page1';
+import { Page2 } from './Page2';
 import { Container } from './styles';
 import { SynopsisPage } from './SynopsisPage';
 
@@ -21,43 +24,36 @@ interface BookUpdateModalProps {
 }
 
 // ---------------------------------------------------------------------------------------------- //
-export const BookUpdateModal = (props: BookUpdateModalProps) => {
+export const BookUpdateModal = () => {
   Modal.setAppElement('#root');
   
   const {isUpdateBookModalOpen, closeUpdateBookModal} = useModals();
+  const {getBooks, bookToEdit} = useBooks();
 
   // *** ---- States ------------------------------------------------------------------------ *** //
-  const [newTitle, setTitle] = useState(props.book.title);
-  const [newPublisher, setPublisher] = useState(props.book.publisher);
-  const [newAuthor, setAuthor] = useState(props.book.author);
-  const [newEdition, setEdition] = useState(props.book.edition);
-  const [newSynopsis, setSynopsis] = useState(props.book.synopsis);
+  const [newTitle, setTitle] = useState('');
+  const [newPublisher, setPublisher] = useState('');
+  const [newAuthor, setAuthor] = useState('');
+  const [newEdition, setEdition] = useState('');
+  const [newSynopsis, setSynopsis] = useState('');
   
   const [page, setPage] = useState<ReactNode>();
   const [pageCounter, setPageCounter] = useState<number>(1);
 
   // *** ---- Pages ------------------------------------------------------------------------- *** //
-  const page1 = <Page
+  const page1 = <Page1
     key='page1' 
-    label1={`Título`} 
-    label2={`Autor`}
-    onChange1={setTitle}
-    onChange2={setAuthor}
-    defaultValue1={newTitle}
-    defaultValue2={newAuthor}
+    onChangeTitle={setTitle}
+    onChangeAuthor={setAuthor}
   />
 
-  const page2 = <Page 
+  const page2 = <Page2
     key='page2'
-    label1={`Editora: ${newPublisher}`} 
-    label2={`Edição: ${newEdition}`}
-    onChange1={setPublisher}
-    onChange2={setEdition}
-    defaultValue1={props.book.publisher}
-    defaultValue2={props.book.edition}
-/>
+    onChangePublisher={setPublisher}
+    onChangeEdition={setEdition}
+  />
   
-  const page3 = <SynopsisPage text={newSynopsis} onChange={setSynopsis}/>
+  const page3 = <SynopsisPage onChange={setSynopsis}/>
   
   // *** ---- Functions --------------------------------------------------------------------- *** //
   const nextPage = () => {
@@ -95,44 +91,73 @@ export const BookUpdateModal = (props: BookUpdateModalProps) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (event:any) => {
+    event.preventDefault();
+
+    await apiProvider.updateBook({
+      id: bookToEdit!.id,
+      title: newTitle,
+      author: newAuthor,
+      edition: newEdition,
+      publisher: newPublisher,
+      synopsis: newSynopsis
+    });
+
+    getBooks();
     onRequestClose();
   }
   
   const onRequestClose = () => {
-    setPage(page1);
-    setPageCounter(1);
+    resetAllStates();
+
     closeUpdateBookModal();
   };
 
+  const resetAllStates = () => {
+    setPage(page1);
+    setPageCounter(1);
+    setTitle('');
+    setAuthor('');
+    setPublisher('');
+    setEdition('');
+    setSynopsis('');
+  }
+
   // *** ---- Effects ----------------------------------------------------------------------- *** //
   useEffect(() => {
-    setPage(page1);
-    setTitle(props.book.title)
-    setAuthor(props.book.author)
-    setPublisher(props.book.publisher)
-    setEdition(props.book.edition)
-    setSynopsis(props.book.synopsis)
+    if (isUpdateBookModalOpen && bookToEdit) {
+      console.log('useffect: ', bookToEdit);
+      setPage(page1);
+      setTitle(bookToEdit.title)
+      setAuthor(bookToEdit.author)
+      setPublisher(bookToEdit.publisher)
+      setEdition(bookToEdit.edition)
+      setSynopsis(bookToEdit.synopsis)
+      return;
+    }
+
+    resetAllStates();
   }, [isUpdateBookModalOpen])
 
   // *** ---- TSX --------------------------------------------------------------------------- *** //
   return (
-    <Modal 
+    <Modal key='1'
       overlayClassName="react-modal-overlay" 
-      className="update-book-modal" isOpen={isUpdateBookModalOpen} 
+      className="update-book-modal" 
+      isOpen={isUpdateBookModalOpen} 
       onRequestClose={onRequestClose}
     >
-      <Container>
+      <Container onSubmit={handleSubmit}>
         <strong>Alterar Livro</strong>
         <div className='content'>
           {page}
         </div>
 
         <div className='button-container'>
-          {(pageCounter <= 1) && <button onClick={closeUpdateBookModal}>Cancelar</button>}
-          {(pageCounter > 1) && <button onClick={previousPage}>Voltar</button>}
-          {(pageCounter !== 3) && <button onClick={nextPage}>Próximo</button>}
-          {(pageCounter === 3) && <button onClick={handleSubmit}>Enviar</button>}
+          {(pageCounter <= 1) && <button type='button' onClick={closeUpdateBookModal}>Cancelar</button>}
+          {(pageCounter > 1) && <button type='button' onClick={previousPage}>Voltar</button>}
+          {(pageCounter !== 3) && <button type='button' onClick={nextPage}>Próximo</button>}
+          {(pageCounter === 3) && <button type='submit'>Enviar</button>}
         </div>
       </Container>
 
