@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import { useBooks } from '../../hooks/useBooks';
 import { useModals } from '../../hooks/useModals';
+import { apiProvider } from '../../providers/api-provider/ApiProviderFactory';
 import { Container } from './styles';
 
 // ---------------------------------------------------------------------------------------------- //
@@ -9,8 +10,19 @@ import { Container } from './styles';
 export const BookDeleteModal = () => {
   Modal.setAppElement('#root');
 
-  const {bookToEdit} = useBooks()
+  const {bookToEdit, getBooks} = useBooks()
   const {isDeleteBookModalOpen, closeDeleteBookModal} = useModals()
+
+  const handleSubmit = async (event :any): Promise<void> => {
+    event.preventDefault();
+    
+    if (bookToEdit) {
+      console.log(bookToEdit?.id);
+      await apiProvider.deleteBook(bookToEdit?.id);
+      await getBooks();
+      closeDeleteBookModal();
+    }
+  }
 
   return (
     <Modal 
@@ -19,7 +31,7 @@ export const BookDeleteModal = () => {
       isOpen={isDeleteBookModalOpen} 
       onRequestClose={closeDeleteBookModal}
     >
-    <Container>
+    <Container onSubmit={handleSubmit}>
       <strong>Remover Livro</strong> 
       <p>
         Você tem certeza que gostaria de remover 
@@ -36,7 +48,7 @@ export const BookDeleteModal = () => {
         </button>
 
         <button 
-          onClick={undefined}
+          type='submit'
           className="delete"
         >
           Remover

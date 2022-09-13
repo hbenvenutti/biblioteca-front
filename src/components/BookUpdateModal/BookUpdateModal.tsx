@@ -126,7 +126,6 @@ export const BookUpdateModal = () => {
   // *** ---- Effects ----------------------------------------------------------------------- *** //
   useEffect(() => {
     if (isUpdateBookModalOpen && bookToEdit) {
-      console.log('useffect: ', bookToEdit);
       setPage(page1);
       setTitle(bookToEdit.title)
       setAuthor(bookToEdit.author)

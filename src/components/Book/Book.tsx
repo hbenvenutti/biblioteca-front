@@ -30,13 +30,11 @@ export const Book = (props: BookProps) => {
   const {openDeleteBookModal, openUpdateBookModal} = useModals()
   
   const onOpenDeleteBookModal = () => {
-    console.log('book: ', props.book)
-    // updateBookData(props.book);
-    openDeleteBookModal()
+    updateBookToEdit(props.book);
+    openDeleteBookModal();
   }
 
   const onOpenUpdateBookModal = () => {
-    console.log('inside book', props.book);
     updateBookToEdit(props.book);
     openUpdateBookModal();
   } 
@@ -85,7 +83,6 @@ export const Book = (props: BookProps) => {
         </footer>
 
       </Container>
-      {/* <BookUpdateModal book={props.book}/> */}
     </>
   )
 }
