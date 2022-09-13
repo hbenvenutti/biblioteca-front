@@ -7,6 +7,7 @@ interface ModalsContextData {
   isUpdateBookModalOpen: boolean;
   isDeleteBookModalOpen: boolean;
   isRegistrationModalOpen: boolean;
+  isCreateBookModalOpen: boolean;
   openDeleteBookModal: () => void;
   closeDeleteBookModal: () => void;
   openUpdateBookModal: () => void;
@@ -15,6 +16,9 @@ interface ModalsContextData {
   closeAuthenticationModal: () => void;
   openRegistrationModal: () => void;
   closeRegistrationModal: () => void;
+  openCreateBookModal: () => void;
+  closeCreateBookModal: () => void;
+
 }
 
 interface ModalsProps {
@@ -31,6 +35,7 @@ const ModalsContext =
     const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [isUpdateBookModalOpen, setUpdateBookModalOpen] = useState(false)
     const [isDeleteBookModalOpen, setDeleteBookModalOpen] = useState(false);
+    const [isCreateBookModalOpen, setCreateBookModalOpen] = useState(false);
 
     const openDeleteBookModal = () => {
       setDeleteBookModalOpen(true);
@@ -64,6 +69,14 @@ const ModalsContext =
       setRegistrationModalOpen(false);
     }
 
+    const openCreateBookModal = () => {
+      setCreateBookModalOpen(true);
+    }
+  
+    const closeCreateBookModal = () => {
+      setCreateBookModalOpen(false);
+    }
+
 
     return (
       <ModalsContext.Provider 
@@ -73,6 +86,7 @@ const ModalsContext =
             isAuthenticationModalOpen,
             isDeleteBookModalOpen,
             isUpdateBookModalOpen,
+            isCreateBookModalOpen,
             openDeleteBookModal, 
             closeDeleteBookModal, 
             openUpdateBookModal, 
@@ -80,7 +94,9 @@ const ModalsContext =
             openAuthenticationModal,
             closeAuthenticationModal,
             openRegistrationModal,
-            closeRegistrationModal
+            closeRegistrationModal,
+            openCreateBookModal,
+            closeCreateBookModal
           }
         }>
           {children}

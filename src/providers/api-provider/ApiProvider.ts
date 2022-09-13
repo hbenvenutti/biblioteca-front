@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 import { 
   ApiProviderInterface, 
@@ -14,13 +14,24 @@ import {
 
 export class ApiProvider implements ApiProviderInterface {
   api = axios.create({
-    baseURL:'https://biblioteca-crud-teppa.herokuapp.com'
+    baseURL:'https://biblioteca-crud-teppa.herokuapp.com',
   })
+  
+  setAuthorizationConfig() {
+    const token = localStorage.getItem('token');
+
+    this.api = axios.create({
+      baseURL:'https://biblioteca-crud-teppa.herokuapp.com',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
 
   authorize(): string {
     const token = localStorage.getItem('token');
 
-    return `authorization bearer ${token}`;
+    return `bearer ${token}`;
   }
 
   async createUser(data: CreateUserData): Promise<User | RequestFail> {
@@ -39,7 +50,7 @@ export class ApiProvider implements ApiProviderInterface {
     try {
       const response = await this.api.post('/accounts/sessions', data);
       localStorage.setItem('token', response.data.token);
-      console.log('logged: ',response.data.user);
+      console.log('logged: ', response.data.user);
       return response.data.user as User;
     } 
     catch (error) {
@@ -48,23 +59,25 @@ export class ApiProvider implements ApiProviderInterface {
   }
   
   async addBook(data: BookCreationData): Promise<RequestFail | Book> {
-    const authorization  = this.authorize();
+    this.setAuthorizationConfig();
 
     try {
+      console.log('try');
       const response = await this.api
-        .post('/books', { 
-          headers: { authorization },
-          data
-        })   
+        .post('/books', data)   
 
       return response.data as Book;
     } 
     catch (error) {
+      console.log('catch');
+      console.log('error: ', error);
       return error as RequestFail;
     }
   }
   
   async deleteBook(id: string): Promise<void | RequestFail> {
+    this.setAuthorizationConfig();
+
     try {
       await this.api.delete(`/books/${id}`);
       
@@ -77,7 +90,7 @@ export class ApiProvider implements ApiProviderInterface {
   }
 
   async updateBook(book: Book): Promise<RequestFail | Book> {
-    const authorization  = this.authorize();
+    this.setAuthorizationConfig();
     
     try {
       const response = await this.api.put(`/books/${book.id}`, book);

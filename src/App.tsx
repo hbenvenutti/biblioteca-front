@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AuthenticationModal } from './components/AuthenticationModal/AuthenticationModal';
+import { BookCreationModal } from './components/BookCreationModal/BookCreationModal';
 
 import { BookDeleteModal } from './components/BookDeleteModal/BookDeleteModal';
 import { BookList } from './components/BookList/BookList';
@@ -35,11 +36,13 @@ const App = () => {
         </Content>
       
       
-      <GlobalStyle/>
-      
-      <BookDeleteModal/>
-      <AuthenticationModal />
-      <RegistrationModal />
+        <GlobalStyle/>
+        
+        <BookCreationModal/>
+        <BookDeleteModal/>
+        <AuthenticationModal />
+        <RegistrationModal />
+        
       </ModalsProvider>
       </BooksProvider>
       </AuthenticationProvider>

@@ -102,6 +102,15 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 8px;
   }
 
+  .create-book-modal {
+    background: var(--gray-800);
+    color: var(--gray-300);
+    width: 30rem;
+    height: 25rem;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
   .authentication-modal {
     background: var(--gray-800);
     color: var(--gray-300);
