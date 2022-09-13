@@ -25,17 +25,17 @@ interface BookProps {
 
 export const Book = (props: BookProps) => {
   const { authentication } = useAuthentication();
-  const { updateBookData } = useBooks();
+  // const { updateBookData } = useBooks();
   const {openDeleteBookModal, openUpdateBookModal} = useModals()
   
   const onOpenDeleteBookModal = () => {
     console.log('book: ', props.book)
-    updateBookData(props.book);
+    // updateBookData(props.book);
     openDeleteBookModal()
   }
 
   const onOpenUpdateBookModal = () => {
-    updateBookData(props.book);
+    // updateBookData(props.book);
     openUpdateBookModal();
   } 
 
@@ -45,7 +45,7 @@ export const Book = (props: BookProps) => {
         <div className="header">
           <div className="bookInfo">
             <strong>{props.book.title}</strong>
-            <span>J.R.R. Tolkien</span>
+            <span>{props.book.author}</span>
           </div>
 
           <div className='edition'>

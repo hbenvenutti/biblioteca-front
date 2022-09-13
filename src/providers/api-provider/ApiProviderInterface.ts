@@ -46,5 +46,7 @@ export interface ApiProviderInterface {
   addBook(data: BookCreationData): Promise<Book | RequestFail>;
   deleteBook(id: Id): Promise<void | RequestFail>;
   updateBook(book: Book): Promise<Book | RequestFail>;
-  listBooks(search?: string): Promise<Book[] | RequestFail>;
+  listAllBooks(search?: string): Promise<Book[] | undefined>;
+  findBooks(search?: string): Promise<Book[] | undefined>;
+
 }

@@ -102,15 +102,25 @@ export class ApiProvider implements ApiProviderInterface {
     }
   }
 
-  async listBooks(search?: string): Promise<Book[] | RequestFail> {
+  async listAllBooks(): Promise<Book[] | undefined> {
     try {
-      const response = await this.api.get(`/books?search=${search}`);
-
+      const response = await this.api.get(`/books`);
+      // console.log('provider:', response.data)
       return response.data as Book[];
     } 
     catch (error) {
       console.log(error);
-      return error as RequestFail;
+    }
+  }
+
+  async findBooks(search?: string): Promise<Book[] | undefined> {
+    try {
+      const response = await this.api.get(`/books?search=${search}`);
+      // console.log('response:\n', response.data)
+      return response.data as Book[];
+    } 
+    catch (error) {
+      console.log(error);
     }
   }
 }
