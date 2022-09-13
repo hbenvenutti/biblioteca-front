@@ -18,6 +18,7 @@ import { GlobalStyle } from './styles/Global';
 // ---------------------------------------------------------------------------------------------- //
 
 const App = () => {
+  console.log('var', import.meta.env.VITE_REACT_APP_API_URL)
   return (
     <>
       <AuthenticationProvider>

@@ -14,7 +14,7 @@ import {
 
 export class ApiProvider implements ApiProviderInterface {
   api = axios.create({
-    baseURL:'https://biblioteca-crud-teppa.herokuapp.com',
+    baseURL: import.meta.env.VITE_REACT_APP_API_URL as string
   })
   
   setAuthorizationConfig() {
